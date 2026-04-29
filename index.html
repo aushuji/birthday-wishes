@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Single favicon only -->
+  <link rel="icon" href="bday.png" />
+  <!-- Added Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <title>Birthday Wishes!</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      /* Updated to light blue gradient background */
+      background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 25%, #81d4fa 50%, #4fc3f7 75%, #e3f2fd 100%);
+      background-attachment: fixed;
+      color: #0d47a1; /* Darker blue for better contrast */
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .page {
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+      /* Subtle background overlay for better text readability */
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .page.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);
+    }
+
+    .highlight {
+      color: #0277bd;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(2, 119, 189, 0.4);
+    }
+
+    /* Typewriter cursor */
+    .typewriter-cursor {
+      display: inline-block;
+      background-color: #0277bd;
+      margin-left: 3px;
+      width: 3px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .button {
+      background: linear-gradient(135deg, #0277bd, #039be5);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(2, 119, 189, 0.4);
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #039be5, #0288d1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(2, 119, 189, 0.6);
+    }
+
+    .button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Transparent images - no border, no padding, no shadow */
+    img {
+      max-width: 70vw;
+      max-height: 50vh;
+      margin-bottom: 20px;
+      /* All styling removed for transparency */
+    }
+
+    .letter {
+      white-space: pre-line;
+      font-size: 1.1rem;
+      max-width: 600px;
+      text-align: left;
+      /* Updated letter styling to match blue theme */
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-left: 4px solid #0277bd;
+      padding: 25px;
+      min-height: 200px;
+      border-radius: 0 15px 15px 0;
+      box-shadow: 0 10px 40px rgba(2, 119, 189, 0.2);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .falling {
+      position: fixed;
+      top: -30px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .button {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+
+      .letter {
+        font-size: 1.05rem;
+        max-height: 60vh;
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page active" id="page1">
+    <img src="7.gif" />
+    <!-- Typewriter title container -->
+    <div style="margin-bottom: 1rem;">
+      <h1 id="typewriter-title" style="font-size: 2.2rem; margin: 0; min-height: 3rem; display: flex; justify-content: center; align-items: center; text-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);"> </h1>
+    </div>
+    <p>are you ready? are you readyyy?✨</p>
+    <button class="button" id="startBtn" onclick="goToPage(2)" disabled>tap ♡</button>
+  </div>
+
+  <div class="page" id="page2">
+    <img src="2.gif" />
+    <p>aaaaaaaaaa im really happy that we'd get to celebrate your birthday together!</p>
+    <button class="button" onclick="goToPage(3)">open it ♡</button>
+  </div>
+
+  <div class="page" id="page3">
+    <img src="3.gif" />
+    <p>my heart is like this ohhhh</p>
+    <button class="button" onclick="goToPage(4)"> ♡</button>
+  </div>
+
+  <div class="page" id="page4">
+    <img src="1.gif" />
+    <p>okay this is it!!!<br>i made something for your birthday, read it slowly plspls 🎂</p>
+    <button class="button" onclick="goToPage(5)">letsgooo ♡</button>
+  </div>
+
+  <div class="page" id="page5">
+    <img src="img3.jpg" />
+    <h1>happy birthday, my babyy… having you in my life feels like something i'll always be thankful for 💙</h1>
+    <p>my neeeew fave pic of u! w stitch ofc.</p>
+    <button class="button" onclick="goToPage(6)">clickkk!</button>
+  </div>
+
+  <div class="page" id="page6">
+    <img src="img2.jpg" />
+    <h1>let's keep making memories together... </h1>
+    <p>so… more dates, more pictures, more memories, and more "us" okay? 💙 </p>
+    <button class="button" onclick="goToPage(7)">♡</button>
+  </div>
+
+  <div class="page" id="page7">
+    <img src="img1.jpg" />
+    <h1>cheers to 24 years of your beautiful existence 🥂 </h1>
+    <p>my favorite hoooman. ♡</p>
+    <button class="button" onclick="goToPage(8)">♡</button>
+  </div>
+
+  <div class="page" id="page8">
+    <h2>Happy Birthday, Baby! ˶ᵔ ᵕ ᵔ˶ </h2>
+    <div class="letter" id="letterText" style="max-height: 400px; overflow-y: auto;"></div>
+  </div>
+
+  <audio id="bg-music" src="bg1.mp3" loop muted></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const fullLetter = `It’s your special daaayy 💙
+
+Happy 24th Birthday, my maecee!
+
+Cheers to 24 beautiful years of your existence. I'm really grateful that out of all places, we met at the same workplace. That simple moment changed everything for me.
+
+At first it was just small talks, little laughs, and random moments at work. I didn't even notice right away that you were becoming so important to me. But slowly, everything felt different. It became real, and now here we are making memories I will always keep.
+
+I always think about our laags together. The spontaneous trips, the walks, the times we didn't even know where to go but still enjoyed everything because we were together. Those simple moments became some of my favorites.
+
+And our coffee and dinner dates will always be special to me. Sitting beside each other, talking about anything, laughing at small things, and just enjoying the moment. It's not really about the coffee. It's about being with you and how calm and happy I feel when I'm next to you.
+
+Thank you for always being there for me. For comforting me when I'm so down and exhausted from work. For cheering me up when I feel like giving up on the things I want to quit, especially work. You don't know how much that means to me.
+
+Thank you for supporting the things I love and for loving me wholeheartedly. I feel so lucky to have you.
+
+You made my ordinary days feel special. You turned simple moments into memories I don't want to forget. 
+
+You are the best hooman ever 💙
+
+Now that you're 24, I just want you to know how proud I am of you. You've come so far and you deserve all the happiness, love, and good things in life.
+
+I'm excited for more memories with you. More laag, more coffee dates, more random trips, and more days just being together.
+
+Happy Birthday, Baby 💙
+I love you always, in all ways!`;
+
+    // Intro typewriter effect
+    const introText = "happy birthday to my baby!!";
+    const typewriterTitle = document.getElementById('typewriter-title');
+    const startBtn = document.getElementById('startBtn');
+    
+    function typeIntroText(text, element, speed) {
+      element.innerHTML = '';
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          // Enable button when typing complete
+          startBtn.disabled = false;
+          startBtn.style.opacity = '1';
+        }
+      }
+
+      type();
+    }
+
+    // Start intro typewriter on page load
+    window.addEventListener('load', () => {
+      typeIntroText(introText, typewriterTitle, 100);
+    });
+
+    function goToPage(pageNum) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(p => p.classList.remove('active'));
+
+      const next = document.getElementById(`page${pageNum}`);
+      next.classList.add('active');
+
+      if (pageNum === 8) {
+        const music = document.getElementById("bg-music");
+        music.play().then(() => {
+          music.muted = false;
+        }).catch(e => {
+          console.log("Audio play failed:", e);
+        });
+
+        // Blue-themed confetti
+        confetti({ 
+          particleCount: 200, 
+          spread: 120, 
+          origin: { y: 0.6 },
+          colors: ['#e3f2fd', '#bbdefb', '#90caf9', '#64b5f6', '#42a5f5']
+        });
+
+        typeText(fullLetter, document.getElementById('letterText'), 60);
+        startFallingSymbols();
+      }
+    }
+
+    function typeText(text, element, speed) {
+      element.innerHTML = '';
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          element.scrollTop = element.scrollHeight;
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+    }
+
+    function startFallingSymbols() {
+      setInterval(() => {
+        const el = document.createElement('div');
+        el.classList.add('falling');
+        // Blue-themed falling symbols
+        const symbols = ['💙', '💎', '✨', '🌟', '🎉', '🎂'];
+        el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.animation = `fall ${3 + Math.random() * 2}s linear forwards`;
+        el.style.fontSize = (20 + Math.random() * 10) + 'px';
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 6000);
+      }, 250);
+    }
+  </script>
+
+</body>
+</html>
