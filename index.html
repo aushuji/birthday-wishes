@@ -93,10 +93,11 @@
       padding: 15px 30px;
       font-size: 1.2rem;
       cursor: pointer;
-      margin-top: 30px;
+      margin-top: 20px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(2, 119, 189, 0.4);
       font-weight: 600;
+      flex-shrink: 0; /* Prevents button from shrinking */
     }
 
     .button:hover {
@@ -111,12 +112,14 @@
       transform: none;
     }
 
-    /* Transparent images - no border, no padding, no shadow */
+    /* Smaller images for mobile - ensures buttons are always visible */
     img {
-      max-width: 70vw;
-      max-height: 50vh;
-      margin-bottom: 20px;
-      /* All styling removed for transparency */
+      max-width: 60vw;        /* Reduced from 70vw */
+      max-height: 35vh;       /* Reduced from 50vh - ensures space for button */
+      width: auto;
+      height: auto;
+      margin-bottom: 15px;    /* Reduced margin */
+      object-fit: contain;    /* Maintains aspect ratio */
     }
 
     .letter {
@@ -154,23 +157,56 @@
 
     @media (max-width: 600px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;      /* Slightly smaller */
+        margin-bottom: 0.5rem;
       }
 
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+      }
+
+      /* Even smaller images on mobile */
+      img {
+        max-width: 55vw;        /* Smaller on mobile */
+        max-height: 28vh;       /* Much smaller to ensure button visibility */
+        margin-bottom: 10px;
       }
 
       .button {
         padding: 12px 24px;
         font-size: 1rem;
+        margin-top: 15px;
+        min-height: 50px;       /* Ensures touch-friendly size */
       }
 
       .letter {
-        font-size: 1.05rem;
-        max-height: 60vh;
-        margin: 20px;
+        font-size: 1rem;
+        max-height: 55vh;
+        margin: 15px;
         padding: 20px;
+      }
+
+      p {
+        margin-bottom: 15px;
+        padding: 0 10px;
+      }
+
+      /* Ensure content doesn't overflow on small screens */
+      .page {
+        padding: 15px;
+        justify-content: center;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      img {
+        max-width: 50vw;
+        max-height: 25vh;
+      }
+      
+      h1 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -179,49 +215,49 @@
 <body>
 
   <div class="page active" id="page1">
-    <img src="7.gif" />
+    <img src="7.gif" alt="Birthday celebration" />
     <!-- Typewriter title container -->
     <div style="margin-bottom: 1rem;">
       <h1 id="typewriter-title" style="font-size: 2.2rem; margin: 0; min-height: 3rem; display: flex; justify-content: center; align-items: center; text-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);"> </h1>
     </div>
-    <p>are you ready? are you readyyy?✨</p>
+    <p style="margin-bottom: 20px;">are you ready? are you readyyy?✨</p>
     <button class="button" id="startBtn" onclick="goToPage(2)" disabled>tap ♡</button>
   </div>
 
   <div class="page" id="page2">
-    <img src="2.gif" />
+    <img src="2.gif" alt="Happy birthday" />
     <p>aaaaaaaaaa im really happy that we'd get to celebrate your birthday together!</p>
     <button class="button" onclick="goToPage(3)">open it ♡</button>
   </div>
 
   <div class="page" id="page3">
-    <img src="3.gif" />
+    <img src="3.gif" alt="Heart animation" />
     <p>my heart is like this ohhhh</p>
     <button class="button" onclick="goToPage(4)"> ♡</button>
   </div>
 
   <div class="page" id="page4">
-    <img src="1.gif" />
+    <img src="1.gif" alt="Birthday gift" />
     <p>okay this is it!!!<br>i made something for your birthday, read it slowly plspls 🎂</p>
     <button class="button" onclick="goToPage(5)">letsgooo ♡</button>
   </div>
 
   <div class="page" id="page5">
-    <img src="img3.jpg" />
+    <img src="img3.jpg" alt="You with Stitch" />
     <h1>happy birthday, my babyy… having you in my life feels like something i'll always be thankful for 💙</h1>
     <p>my neeeew fave pic of u! w stitch ofc.</p>
     <button class="button" onclick="goToPage(6)">clickkk!</button>
   </div>
 
   <div class="page" id="page6">
-    <img src="img2.jpg" />
+    <img src="img2.jpg" alt="Memories together" />
     <h1>let's keep making memories together... </h1>
     <p>so… more dates, more pictures, more memories, and more "us" okay? 💙 </p>
     <button class="button" onclick="goToPage(7)">♡</button>
   </div>
 
   <div class="page" id="page7">
-    <img src="img1.jpg" />
+    <img src="img1.jpg" alt="Birthday cheers" />
     <h1>cheers to 24 years of your beautiful existence 🥂 </h1>
     <p>my favorite hoooman. ♡</p>
     <button class="button" onclick="goToPage(8)">♡</button>
